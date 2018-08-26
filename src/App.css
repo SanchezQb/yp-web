@@ -1,0 +1,283 @@
+.login-form {
+  padding: 2%;
+  background-color: #f2f3f4;
+  width: 40%;
+  margin: 20vh auto;
+}
+
+
+.login-form input[type="text"], input[type="password"] {
+  margin: 10px auto 20px;
+  border: 1px solid #ccc;
+  padding: 2%;
+  width: 95%;
+}
+.wrap {
+  width: 90%;
+  margin: 0 auto;
+  background-color: '#f3f3f3'
+}
+.action-buttons {
+  margin-right: 20px;
+}
+.edit-form {
+  width: 40%;
+}
+.edit-form input[type="text"], input[type="password"], input[type="email"], input[type="number"], select  {
+  margin: 10px auto 20px;
+  border: 1px solid #ccc;
+  padding: 2%;
+  width: 95%;
+}
+.edit-form textarea {
+  margin: 10px auto 20px;
+  border: 1px solid #ccc;
+  padding: 2%;
+  width: 95%;
+  height: 150px;
+}
+.export-button {
+  margin: 20px 0;
+}
+.paper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 20px auto;
+  justify-content: start;
+}
+.paper-item {
+  width: 250px;
+  height: 100px;
+  box-shadow: #ccc;
+  margin: 20px 0 0 40px;
+  border-radius: 2px;
+  border: 1px solid #aaa;
+
+}
+.paper-item h3 {
+  margin: 0 10px 2px;
+  font-size: 15px;
+  font-weight: 200;
+  padding: 5px 0;
+  color: #fff;
+}
+.paper-item h5 {
+  margin: 0 10px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 0;
+  color: #222;
+}
+.paper-item h5:hover {
+  color: #008890;
+}
+.paper-link {
+  text-decoration: none;
+  color: #fff;
+}
+.top input[type="text"] {
+  margin: 10px 20px 20px;
+  border: 1px solid #ccc;
+  padding: 0.8%;
+  width: 20%;
+}
+.top select {
+  border: 1px solid #ccc;
+  padding: 0.8%;
+  width: 20%;
+}
+#membership {
+  font-size: 30px;
+}
+.price-change {
+  margin: 20vh auto;
+}
+.price-change input[type="number"] {
+  width: 28%;
+  margin-top: 3%;
+  padding: 10px;
+  margin-right: 10px;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40vh;
+}
+.table-row {
+  cursor: pointer;
+}
+.calendar {
+  margin: 20px auto;
+  height: 100vh;
+}
+.add-event {
+  width: 90%;
+  margin: 0 auto;
+}
+.event-form {
+  width: 40%;
+}
+.event-form input[type="text"], input[type="datetime-local"] {
+  margin: 10px auto 20px;
+  border: 1px solid #ccc;
+  padding: 2%;
+  width: 95%;
+}
+.calendar-data {
+  width: 90%;
+  margin: 0 auto;
+}
+.questions {
+  width: 80%;
+  margin: 0 auto;
+}
+.gallery {
+  width: 90%;
+  margin: 0 auto
+}
+.images:hover .overlay {
+  opacity: 0.7;
+}
+.gallery-photos {
+  width: 20vw;
+  height: 30vh;
+}
+.container {
+  position: relative;
+  width: 35%;
+  margin: 15px auto;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #222;
+}
+
+.container:hover .overlay {
+  opacity: 0.7;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.button-container {
+  text-align: center;
+}
+.title-link {
+  text-decoration: none;
+  color: #fff;
+}
+.ypn-title {
+  margin: 0 5px;
+  display: inline-block;
+
+}
+.ypn-drawer-title {
+  margin: 5px 10px 0;
+  color: #222;
+}
+.ypn-drawer-subtitle {
+  color: #ccc;
+  margin: 10px 10px 20px;
+}
+.chat {
+  width: 50%;
+  border: 2px solid #e1e1e1;
+  padding: 0 20px;
+}
+.topic-search input[type="text"] {
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  padding: 0.8%;
+  width: 20%;
+}
+.add-right {
+  margin: 0 20px;
+  cursor: pointer;
+}
+.donation-data {
+  width: 80%;
+  margin: 20px auto;
+}
+.title-scene {
+  display: flex;
+  flex-direction: row;
+}
+.donation-wrap {
+  width: 85%;
+  margin: 0 auto;
+}
+.donation-picture {
+  width: 30%;
+  height: 270px;
+}
+.donation-title {
+  margin: 0 20px;
+}
+.donation-subtitle {
+  margin: 20px;
+  color: #888;
+}
+.donation-top input[type="text"] {
+  margin: 10px 0px 20px;
+  border: 1px solid #ccc;
+  padding: 0.8%;
+  width: 20%;
+}
+.donation-paper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 20px auto;
+  justify-content: start;
+}
+.add-choice {
+  cursor: pointer;
+}
+.poll-results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: 20px auto;
+}
+.poll-result-item {
+  background-color: #f3f3f3;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  padding: 8%;
+  margin: 0 auto;
+}
+.poll-result-item h2 {
+  text-align: center;
+}
+.poll-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
