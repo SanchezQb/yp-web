@@ -93,14 +93,16 @@ import CandidateDonations from './candidatedonations/CandidateDonations';
 import CandidateDonationData from './candidatedonations/CandidateDonationData';
 import CandidateUsersData from './candidatedonations/CandidateUsersData';
 
+
 export default class Main extends Component {
 
     render() {
+
         return (
             <main>
                 <Switch>
                     <Route exact path = '/' component = {Login} />
-                    <Route exact path = '/home' component = {Home} />
+                    <Route exact path = '/home' component = {Home} redirectTo="/"/>
                     <AuthRoute exact path = '/users' component = {Users} redirectTo="/" authenticated={accountStore.authenticated} />
                     <AuthRoute exact path = '/users/:id' component = {UserData} redirectTo="/" authenticated={accountStore.authenticated} />
                     <AuthRoute exact path = '/users/edit/:id' component = {EditUser} redirectTo="/" authenticated={accountStore.authenticated} />

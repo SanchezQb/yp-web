@@ -281,3 +281,15 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+.contData {
+  font-weight: 100;
+  padding: 10px 0;
+  margin: 0;
+
+}
+.contData:hover {
+  cursor: pointer;
+  background: #f6f6f6;
+  padding: 10px 0;
+  margin: 0;
+}

@@ -1,26 +1,13 @@
 import { observable, action } from "mobx";
 import axios from 'axios'
 
-class Account {
-  @observable user = {
-    token: '',
-    avatar: null,
-    email: '',
-    id: '',
-    firstname: '',
-    lastname: '',
-    username: '',
-    role: null,
-  }
-  @observable authenticated = false
+class Candidates {
   @observable disabled = false
-  @observable open = false
-
 
 
   // Functions (Use actions for anything that modifies observables)
   @action
-  login(data, history) {
+  addElectoralCandidate(data, history) {
     const request = {
       user: {
         ...data

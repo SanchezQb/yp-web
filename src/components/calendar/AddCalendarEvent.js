@@ -6,7 +6,7 @@ export default class AddCalendarEvent extends Component {
     render() {
         return (
             <div>
-                <Nav />
+                <Nav/>
                 <div className="add-event">
                     <h2>Add Calendar Event</h2>
                     <form className="event-form">

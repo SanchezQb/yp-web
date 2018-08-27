@@ -8,6 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Divider from 'material-ui/Divider';
+import accountStore from '../stores/Account'
 
 
 class Nav extends Component {
@@ -24,7 +25,9 @@ class Nav extends Component {
     };
 
     logout = () => {
-        console.log(this)
+       accountStore.logout()
+       this.props.history.push('/')
+
     }
 
     render() {
@@ -41,7 +44,7 @@ class Nav extends Component {
                     <MenuItem primaryText="Manage Sub-Admin" containerElement={<Link to="/subadmin" />} />
                     <MenuItem primaryText="Settings" containerElement={<Link to="/settings" />} />
                     <Divider />
-                    <MenuItem primaryText="Log out"/>
+                    <h4 style={{fontWeight: 100, marginLeft: '7%', cursor: 'pointer'}} onClick={() => this.logout()}>Log out</h4>
                 </IconMenu>
             </div>
         );
@@ -52,7 +55,7 @@ class Nav extends Component {
                     title={
                         <Link to="/home" className="title-link"><h3 className="ypn-title">Youth Party</h3></Link>
                     }
-                    iconElementRight={<Logged />}
+                    iconElementRight={<Logged history={this.props.history}/>}
                     onLeftIconButtonClick={this.handleToggle}
                 />
                 <div>

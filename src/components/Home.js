@@ -1,15 +1,13 @@
 import React from 'react'
 import Nav from './Nav'
 import { Link } from 'react-router-dom'
-import accountStore from '../stores/Account'
 
 
-
-const Home = () => {
-    console.log(accountStore.authenticated)
-    return (
-        <div>
-            <Nav />
+class Home extends React.Component {
+    render() {
+        return (
+            <div>
+            <Nav history={this.props.history}/>
             <div className="paper">
                 <div className="paper-item" style={{backgroundColor: '#fff'}}>
                     <div style={{backgroundColor: '#F0BA00'}}>
@@ -194,7 +192,9 @@ const Home = () => {
             </div>
 
         </div>
-    )
+        )
+    }
 }
+
 
 export default Home

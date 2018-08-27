@@ -77,7 +77,7 @@ class Elected extends Component {
                         </TableBody>
                     </Table>
                     <FloatingActionButton style={style} onClick={() => {
-                        this.props.history.push('/elected-officials/add')
+                        this.props.history.push('/electoral-candidates/add')
                     }}>
                         <ContentAdd />
                     </FloatingActionButton>

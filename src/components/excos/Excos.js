@@ -31,12 +31,9 @@ class Excos extends Component {
         excos: []          
     }
     componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(res => this.setState({
-            isLoading: false,
-            excos: res.data
-        }))
+        this.fetchExcos()
     }
+    
     render() {
         const excosData = this.state.excos.map(exco => {
             return (
