@@ -9,6 +9,7 @@ import '../../App.css'
 export default class AddElectoral extends Component {
 
     state = {
+        name: '',
         position: '',
         state: '',
         local: '',
@@ -85,9 +86,7 @@ export default class AddElectoral extends Component {
                     <h2>Add Electoral Candidate</h2>
                     <form className="edit-form">
                         <label htmlFor="name">Name</label><br/>
-                        <input type="text" id="name" /><br/>
-                        <label htmlFor="username">Username</label><br />
-                        <input type="text" id="username" />
+                        <input type="text" id="name" onChange={(e) => this.setState({name: e.target.value})} /><br/>
                         <div>
                             <h5>Position</h5>
                             <select 
