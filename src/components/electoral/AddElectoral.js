@@ -15,8 +15,9 @@ export default class AddElectoral extends Component {
         stateConstituency: [],
         federalConstituency: [],
         selectedLGAs: [],
-        selectedConstituency: []
-
+        selectedConstituency: [],
+        backgroundColor: '#fff',
+        target: null
 
     }
     setLGAs = () => {						
@@ -36,7 +37,7 @@ export default class AddElectoral extends Component {
     }
 
     addElectoralCandidate = () => {
-        
+
     }
 
     setStateConstituency = () => {
@@ -68,6 +69,12 @@ export default class AddElectoral extends Component {
         this.setState({
             federalConstituency
         })
+    }
+    handleSelectConstituency = (item) => {
+        this.setState({
+            selectedConstituency: item
+        })
+        alert(`${item.join(', ')} selected`)
     }
     render() {
         console.log(this.state)
@@ -163,9 +170,9 @@ export default class AddElectoral extends Component {
                                 </div>
                                 <div>
                                     <h5>Senate Constituency</h5>
-                                       {this.state.stateConstituency.map((item, i) => {
+                                    {this.state.stateConstituency.map((item, i) => {
                                            return (
-                                               <h5 onClick={() => this.setState({selectedConstituency: item})}className="contData">{item.join(", ")}</h5>
+                                               <h5 key={i} style={{cursor: 'pointer', fontWeight: 100, paddingTop: 10,paddingBottom: 10, margin: 0, backgroundColor: this.state.backgroundColor}}onClick={() => this.handleSelectConstituency(item)} className="contData">{item.join(", ")}</h5>
                                            )
                                        })}
                                 </div>
@@ -194,11 +201,12 @@ export default class AddElectoral extends Component {
                                 </div>
                                 <div>
                                     <h5>Federal Constituency</h5>
-                                       {this.state.federalConstituency.map((item, i) => {
+                                    {this.state.federalConstituency.map((item, i) => {
                                            return (
-                                               <h5 onClick={() => this.setState({selectedConstituency: item})}className="contData">{item.join(", ")}</h5>
+                                               <h5 key={i} style={{cursor: 'pointer', fontWeight: 100, paddingTop: 10,paddingBottom: 10, margin: 0, backgroundColor: this.state.backgroundColor}} onClick={() => this.handleSelectConstituency(item)} className="contData">{item.join(", ")}</h5>
                                            )
                                        })}
+                                       
                                 </div>
                             </div>
                         :

@@ -97,99 +97,99 @@ import CandidateUsersData from './candidatedonations/CandidateUsersData';
 export default class Main extends Component {
 
     render() {
-
+        console.log(true)
         return (
             <main>
                 <Switch>
                     <Route exact path = '/' component = {Login} />
                     <Route exact path = '/home' component = {Home} redirectTo="/"/>
-                    <AuthRoute exact path = '/users' component = {Users} redirectTo="/" authenticated={accountStore.authenticated} />
-                    <AuthRoute exact path = '/users/:id' component = {UserData} redirectTo="/" authenticated={accountStore.authenticated} />
-                    <AuthRoute exact path = '/users/edit/:id' component = {EditUser} redirectTo="/" authenticated={accountStore.authenticated} />
-                    <AuthRoute exact path = '/excos' component = {Excos} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/excos/add' component = {AddExco} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/excos/:id' component = {ExcosData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/excos/edit/:id' component = {EditExco} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/office' component = {Office} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/office/:id' component = {OfficeData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/volunteers' component = {Volunteers} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/volunteers/:id' component = {VolunteersData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/membership' component = {Membership} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/elected-officials' component = {Elected} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/elected-officials/add' component = {AddElectedOfficial} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/elected-officials/:id' component = {ElectedOfficialData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/elected-officials/edit/:id' component = {EditElectedOfficial} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/sponsored-candidates' component = {Sponsored} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/sponsored-candidates/:id' component = {SponsoredData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/electoral-candidates' component = {Electoral} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/electoral-candidates/add' component = {AddElectoral} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/electoral-candidates/:id' component = {ElectoralData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/electoral-candidates/edit/:id' component = {EditElectoral} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/calendar-management' component = {Calendar} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/calendar-management/add' component = {AddCalendarEvent} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/calendar-management/:id' component = {CalendarData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/calendar-management/edit/:id' component = {EditCalendarData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/questionnaire' component = {Questionnaire} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/questionnaire/add' component = {AddQuestionnaire} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/questionnaire/:id' component = {QuestionnaireData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/questionnaire/edit/:id' component = {EditQuestionnaire} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/gallery' component = {Gallery} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/gallery/add' component = {AddGallery} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/gallery/:id' component = {Single} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/gallery/edit/:id' component = {EditGallery} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/debate' component = {Debate} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/debate/add' component = {AddDebate} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/debate/:id' component = {DebateData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/debate/edit/:id' component = {EditDebate} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/townhall' component = {TownHall} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/townhall/add' component = {AddTownHall} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/townhall/:id' component = {TownHallData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/townhall/edit/:id' component = {EditTownHall} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/subadmin' component = {SubAdmin} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/subadmin/add' component = {AddSubAdmin} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/subadmin/:id' component = {SubAdminData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/subadmin/edit/:id' component = {EditSubAdmin} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/careers' component = {Career} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/careers/add' component = {AddCareer} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/careers/:id' component = {CareerData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/careers/applied/:id' component = {CareerAppliedData} redirectTo="/" authenticated={accountStore.authenticated}/>       
-                    <AuthRoute exact path = '/careers/edit/:id' component = {EditCareer} redirectTo="/" authenticated={accountStore.authenticated} />
-                    <AuthRoute exact path = '/chat' component = {Chat} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/chats/:id' component = {ChatData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/polls' component = {Polls} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/opinion-polls' component = {Opinion} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/opinion-polls/add' component = {AddOpinion} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/opinion-polls/:id' component = {OpinionData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/opinion-polls/edit/:id' component = {EditOpinion} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/exit-polls' component = {Exit} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/exit-polls/add' component = {AddExit} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/exit-polls/:id' component = {ExitData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/exit-polls/edit/:id' component = {EditExit} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/push-polls' component = {Push} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/push-polls/add' component = {AddPush} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/push-polls/:id' component = {PushData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/push-polls/edit/:id' component = {EditPush} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/tracking-polls' component = {Tracking} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/tracking-polls/add' component = {AddTracking} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/tracking-polls/:id' component = {TrackingData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/tracking-polls/edit/:id' component = {EditTracking} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/reports' component = {Reports} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/election-polls' component = {ElectionPolls} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/election-polls/add' component = {AddElectionPolls} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/election-polls/:id' component = {ElectionPollsData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/policy-elections' component = {Policy} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/policy-elections/add' component = {AddPolicy} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/policy-elections/:id' component = {PolicyData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/party-donations' component = {PartyDonations} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/party-donations/:id' component = {PartyDonationData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/campaign-donations' component = {CampaignDonations} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/campaign-donations/add' component = {AddCampaignDonation} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/campaign-donations/:id' component = {CampaignDonationData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/campaign-donations/donated/:id' component = {CampaignUsersData} redirectTo="/" authenticated={accountStore.authenticated}/>       
-                    <AuthRoute exact path = '/campaign-donations/edit/:id' component = {EditCampaignDonation} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/candidate-donations' component = {CandidateDonations} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/candidate-donations/:id' component = {CandidateDonationData} redirectTo="/" authenticated={accountStore.authenticated}/>
-                    <AuthRoute exact path = '/candidate-donations/donated/:id' component = {CandidateUsersData} redirectTo="/" authenticated={accountStore.authenticated}/> 
+                    <AuthRoute exact path = '/users' component = {Users} redirectTo="/" authenticated={true} />
+                    <AuthRoute exact path = '/users/:id' component = {UserData} redirectTo="/" authenticated={true} />
+                    <AuthRoute exact path = '/users/edit/:id' component = {EditUser} redirectTo="/" authenticated={true} />
+                    <AuthRoute exact path = '/excos' component = {Excos} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/excos/add' component = {AddExco} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/excos/:id' component = {ExcosData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/excos/edit/:id' component = {EditExco} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/office' component = {Office} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/office/:id' component = {OfficeData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/volunteers' component = {Volunteers} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/volunteers/:id' component = {VolunteersData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/membership' component = {Membership} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/elected-officials' component = {Elected} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/elected-officials/add' component = {AddElectedOfficial} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/elected-officials/:id' component = {ElectedOfficialData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/elected-officials/edit/:id' component = {EditElectedOfficial} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/sponsored-candidates' component = {Sponsored} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/sponsored-candidates/:id' component = {SponsoredData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/electoral-candidates' component = {Electoral} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/electoral-candidates/add' component = {AddElectoral} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/electoral-candidates/:id' component = {ElectoralData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/electoral-candidates/edit/:id' component = {EditElectoral} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/calendar-management' component = {Calendar} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/calendar-management/add' component = {AddCalendarEvent} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/calendar-management/:id' component = {CalendarData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/calendar-management/edit/:id' component = {EditCalendarData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/questionnaire' component = {Questionnaire} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/questionnaire/add' component = {AddQuestionnaire} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/questionnaire/:id' component = {QuestionnaireData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/questionnaire/edit/:id' component = {EditQuestionnaire} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/gallery' component = {Gallery} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/gallery/add' component = {AddGallery} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/gallery/:id' component = {Single} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/gallery/edit/:id' component = {EditGallery} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/debate' component = {Debate} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/debate/add' component = {AddDebate} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/debate/:id' component = {DebateData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/debate/edit/:id' component = {EditDebate} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/townhall' component = {TownHall} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/townhall/add' component = {AddTownHall} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/townhall/:id' component = {TownHallData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/townhall/edit/:id' component = {EditTownHall} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/subadmin' component = {SubAdmin} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/subadmin/add' component = {AddSubAdmin} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/subadmin/:id' component = {SubAdminData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/subadmin/edit/:id' component = {EditSubAdmin} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/careers' component = {Career} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/careers/add' component = {AddCareer} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/careers/:id' component = {CareerData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/careers/applied/:id' component = {CareerAppliedData} redirectTo="/" authenticated={true}/>       
+                    <AuthRoute exact path = '/careers/edit/:id' component = {EditCareer} redirectTo="/" authenticated={true} />
+                    <AuthRoute exact path = '/chat' component = {Chat} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/chats/:id' component = {ChatData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/polls' component = {Polls} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/opinion-polls' component = {Opinion} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/opinion-polls/add' component = {AddOpinion} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/opinion-polls/:id' component = {OpinionData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/opinion-polls/edit/:id' component = {EditOpinion} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/exit-polls' component = {Exit} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/exit-polls/add' component = {AddExit} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/exit-polls/:id' component = {ExitData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/exit-polls/edit/:id' component = {EditExit} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/push-polls' component = {Push} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/push-polls/add' component = {AddPush} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/push-polls/:id' component = {PushData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/push-polls/edit/:id' component = {EditPush} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/tracking-polls' component = {Tracking} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/tracking-polls/add' component = {AddTracking} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/tracking-polls/:id' component = {TrackingData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/tracking-polls/edit/:id' component = {EditTracking} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/reports' component = {Reports} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/election-polls' component = {ElectionPolls} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/election-polls/add' component = {AddElectionPolls} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/election-polls/:id' component = {ElectionPollsData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/policy-elections' component = {Policy} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/policy-elections/add' component = {AddPolicy} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/policy-elections/:id' component = {PolicyData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/party-donations' component = {PartyDonations} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/party-donations/:id' component = {PartyDonationData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/campaign-donations' component = {CampaignDonations} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/campaign-donations/add' component = {AddCampaignDonation} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/campaign-donations/:id' component = {CampaignDonationData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/campaign-donations/donated/:id' component = {CampaignUsersData} redirectTo="/" authenticated={true}/>       
+                    <AuthRoute exact path = '/campaign-donations/edit/:id' component = {EditCampaignDonation} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/candidate-donations' component = {CandidateDonations} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/candidate-donations/:id' component = {CandidateDonationData} redirectTo="/" authenticated={true}/>
+                    <AuthRoute exact path = '/candidate-donations/donated/:id' component = {CandidateUsersData} redirectTo="/" authenticated={true}/> 
                 </Switch>
             </main>
         )

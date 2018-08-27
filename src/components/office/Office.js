@@ -43,16 +43,16 @@ export default class Office extends Component {
             <div>
                 <Nav />
                 <div className="wrap">
-                <h2>Run for Office Management</h2>
-                <div className="top">
-                    <h5>Filter</h5>
-                    <select onChange={(e) => console.log(e.target.value)}>
-                        <option value="all">All</option>
-                        <option value="presidential">Federal</option>
-                        <option value="governorship">State</option>
-                        <option value="governorship">Local</option>
-                    </select> 
-                </div>
+                    <h2>Run for Office Management</h2>
+                    <div className="top">
+                        <h5>Filter</h5>
+                        <select onChange={(e) => console.log(e.target.value)}>
+                            <option value="all">All</option>
+                            <option value="presidential">Federal</option>
+                            <option value="governorship">State</option>
+                            <option value="governorship">Local</option>
+                        </select> 
+                    </div>
                 <Table>
                     <TableHeader>
                         <TableRow>
