@@ -4,20 +4,34 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { StateData } from '../../StateData'
 import { ConstituencyData } from '../../ConstituencyData'
 import '../../App.css'
+import axios from 'axios'
+import accountStore from '../../stores/Account'
 
 
-export default class AddElectoral extends Component {
+export default class AddPosition extends Component {
 
     state = {
         name: '',
-        position: '',
+        level: '',
         state: '',
+        type: 1,
         local: '',
+        meta: {},
+        closing: '',
+        requirement1: '',
+        requirement2: '',
+        requirement3: '',
+        requirements: [],
         stateConstituency: [],
         federalConstituency: [],
         selectedLGAs: [],
         selectedConstituency: [],
+        disabled: false
 
+    }
+
+    componentDidMount() {
+        console.log(accountStore.user.token)
     }
     setLGAs = () => {						
 		let selectedLGAs = [];
@@ -75,31 +89,79 @@ export default class AddElectoral extends Component {
         })
         alert(`${item.join(', ')} selected`)
     }
+
+    addPosition = async () => {
+        const request = {
+            name: this.state.name,
+            type: this.state.type,
+            meta: {
+                state: this.state.state || null,
+                lga: this.state.local || null,
+                constituency: this.state.selectedConstituency || null,
+                closingDate: this.state.closing || null,
+                requirements: [this.state.requirement1, this.state.requirement2, this.state.requirement3] || null
+            }
+        }
+       this.setState({disabled: true})
+       if(!this.state.name || !this.state.type) {
+           return alert('Please fill in all fields')
+       }
+       await axios({
+        url: 'https://ypn-election-02.herokuapp.com/api/position', 
+        method: 'POST', 
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `${accountStore.user.token}`
+        },
+        data: request
+        })
+        .then(res => {
+            this.setState({disabled: false})
+            alert('Position added successfully')
+            this.props.history.pop()
+        })
+        .catch(err => {
+            this.setState({disabled: false})
+            console.log(err)
+        })
+    }
     render() {
         console.log(this.state)
         return (
             <div>
                 <Nav />
                 <div className="wrap">
-                    <h2>Add Electoral Candidate</h2>
+                    <h2>Add Position</h2>
                     <form className="edit-form">
                         <label htmlFor="name">Name</label><br/>
                         <input type="text" id="name" onChange={(e) => this.setState({name: e.target.value})} /><br/>
                         <div>
-                            <h5>Position</h5>
+                            <label htmlFor="level">Level</label><br/>
                             <select 
-                                onChange={(e) => this.setState({position: e.target.value})}>
-                                <option value="president">President</option>
-                                <option value="governor">Governor</option>
+                                id="level"
+                                onChange={(e) => this.setState({level: e.target.value}, () => {
+                                    if(this.state.level === 'federal'){
+                                        this.setState({type: 1})
+                                    }
+                                    else if(this.state.level === 'state' || this.state.level === 'house of reps' || this.state.level == 'senate'){
+                                        this.setState({type: 2})
+                                    }
+                                    else {
+                                        this.setState({type: 3})
+                                    }
+                                })}>
+                                <option value="federal">Federal</option>
+                                <option value="state">State</option>
                                 <option value="senate">Senate</option>
                                 <option value="house of reps">House of Representatives</option>
                                 <option value="local">Local Government</option>
                             </select> 
                         </div>
-                        {this.state.position === 'governor' ?
+                        {this.state.level === 'state' ?
                             <div>
-                                <h5>State</h5>
+                               <label>State</label><br/>
                                 <select
+                                    id="state"
                                     onChange={(e) => {
                                         this.setState({state: e.target.value}, () => {
                                             this.setLGAs()
@@ -117,10 +179,10 @@ export default class AddElectoral extends Component {
                         :
                         null
                         }
-                        {this.state.position === 'local' ?
+                        {this.state.level === 'local' ?
                             <div>
                                 <div>
-                                    <h5>State</h5>
+                                    <label>State</label><br/>
                                     <select
                                         onChange={(e) => {
                                             this.setState({state: e.target.value}, () => {
@@ -137,7 +199,7 @@ export default class AddElectoral extends Component {
                                     </select> 
                                 </div>
                                 <div>
-                                    <h5>Local Government</h5>
+                                    <label>Local Government</label><br/>
                                     <select onChange={(e) => this.setState({local: e.target.value})}>
                                         {this.state.selectedLGAs}
                                     </select> 
@@ -146,10 +208,10 @@ export default class AddElectoral extends Component {
                         :
                         null
                         }
-                        {this.state.position === 'senate' ?
+                        {this.state.level === 'senate' ?
                             <div>
                                 <div>
-                                    <h5>State</h5>
+                                    <label>State</label><br/>
                                     <select
                                         onChange={(e) => {
                                             this.setState({state: e.target.value}, () => {
@@ -177,10 +239,10 @@ export default class AddElectoral extends Component {
                         :
                         null
                         }
-                        {this.state.position === 'house of reps' ?
+                        {this.state.level === 'house of reps' ?
                             <div>
                                 <div>
-                                    <h5>State</h5>
+                                    <label>State</label><br/>
                                     <select
                                         onChange={(e) => {
                                             this.setState({state: e.target.value}, () => {
@@ -193,7 +255,7 @@ export default class AddElectoral extends Component {
                                             let state = item['state']['name'];
                                             return <option style={{color: '#000'}}key={index} value={state} label={state}>{state}</option>
                                         })
-                                        }
+                                    }
                                     </select> 
                                 </div>
                                 <div>
@@ -209,7 +271,13 @@ export default class AddElectoral extends Component {
                         :
                         null
                         }
-                        <RaisedButton label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.handleClick}/>
+                        <label htmlFor="start">Closing Date</label><br/>
+                        <input type="datetime-local" onChange={(e) => this.setState({closing: e.target.value})} id="end"/><br />
+                        <label htmlFor="name">Requirements</label><br/>
+                        <span>1</span><input type="text" id="name" onChange={(e) => this.setState({requirement1: e.target.value})}/><br/>
+                        <span>2</span><input type="text" id="name" onChange={(e) => this.setState({requirement2: e.target.value})}/><br/>
+                        <span>3</span><input type="text" id="name" onChange={(e) => this.setState({requirement3: e.target.value})}/><br/>
+                        <RaisedButton disabled={this.state.disabled} label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.addPosition}/>
                     </form>
                 </div>
             </div>

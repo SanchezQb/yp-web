@@ -284,7 +284,7 @@
 .contData {
   font-weight: 100;
   padding: 10px 0;
-  margin: 0;
+  margin: 0 0 20px 0;
 
 }
 .contData:hover {

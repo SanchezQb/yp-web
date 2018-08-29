@@ -85,9 +85,14 @@ class Home extends React.Component {
                     <Link to={'/electoral-candidates'} className="paper-link">
                         <h5>Electoral Candidates</h5>
                     </Link>
-                    <Link to={'/sponsored-candidates'} className="paper-link">
-                        <h5>Sponsored Candidates</h5>
-                    </Link>
+                    <div className="poll-grid">
+                        <Link to={'/positions/add'} className="paper-link">
+                            <h5>Add Position</h5>
+                        </Link>
+                        <Link to={'/sponsored-candidates'} className="paper-link">
+                            <h5>Sponsored Candidates</h5>
+                        </Link>
+                    </div>
                 </div>
                 <div className="paper-item" style={{backgroundColor: '#fff'}}>
                     <div style={{backgroundColor: '#444'}}>

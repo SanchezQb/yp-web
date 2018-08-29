@@ -46,6 +46,7 @@ class Account {
       this.user.role = res.data.data.user.role
       this.authenticated = true
       localStorage.setItem('admin', JSON.stringify(this.user))
+      localStorage.setItem('authenticated', JSON.stringify({authenticated: true}))
       history.push('/home')
   }).catch(err => {
     alert(err.response.data.errors);
@@ -54,6 +55,7 @@ class Account {
   }
   logout() {
     this.authenticated = false
+    localStorage.clear()
   }
   setAuth(data) {
     this.user = {...data}
