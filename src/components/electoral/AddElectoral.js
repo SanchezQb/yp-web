@@ -4,8 +4,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { StateData } from '../../StateData'
 import { ConstituencyData } from '../../ConstituencyData'
 import '../../App.css'
+import { observer } from 'mobx-react'
+import accountStore from '../../stores/Account'
+import axios from 'axios';
 
-
+@observer
 export default class AddElectoral extends Component {
 
     state = {
@@ -19,6 +22,8 @@ export default class AddElectoral extends Component {
         selectedConstituency: [],
 
     }
+
+
     setLGAs = () => {						
 		let selectedLGAs = [];
 		StateData.map((v) => {
@@ -36,7 +41,14 @@ export default class AddElectoral extends Component {
     }
 
     addElectoralCandidate = () => {
-
+        axios({
+            url: 'https://ypn-election-02.herokuapp.com/api/position', 
+            method: 'GET', 
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${accountStore.user.token}`
+            },
+        }).then(res => console.log(res))
     }
 
     setStateConstituency = () => {
@@ -76,7 +88,6 @@ export default class AddElectoral extends Component {
         alert(`${item.join(', ')} selected`)
     }
     render() {
-        console.log(this.state)
         return (
             <div>
                 <Nav />
@@ -209,7 +220,7 @@ export default class AddElectoral extends Component {
                         :
                         null
                         }
-                        <RaisedButton label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.handleClick}/>
+                        <RaisedButton label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.addElectoralCandidate}/>
                     </form>
                 </div>
             </div>

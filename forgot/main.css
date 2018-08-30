@@ -1,0 +1,31 @@
+body {
+	font-family: Arial;
+}
+.logo {
+	text-align: center;
+	margin: 50px auto;
+}
+
+.logo img {
+	width: 100px;
+}
+
+.form {
+	display: flex;
+	justify-content: center;
+}
+
+input {
+	margin: 7% auto;
+	width: 200px;
+}
+
+button {
+	border-style: solid;
+	width: 50%;
+	background: #82BE30;
+	color: #fff;
+	height: 30px;
+	border: 0;
+	cursor: pointer;
+}

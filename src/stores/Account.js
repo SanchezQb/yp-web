@@ -57,12 +57,8 @@ class Account {
     this.authenticated = false
     localStorage.clear()
   }
-  setAuth(data) {
-    this.user = {...data}
-    this.authenticated = true
-  }
-  checkAuth() {
-    return this.authenticated
+  loadData() {
+    this.user =JSON.parse(localStorage.getItem('admin', JSON.parse))
   }
 }
 
