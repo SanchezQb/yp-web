@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import CircularProgress from 'material-ui/CircularProgress';
+import accountStore from '../../stores/Account'
 
 import {
   Table,
@@ -27,17 +28,52 @@ const style = {
 
 class Excos extends Component {
     state = {
+        excos: [],
+        items: [],
         isLoading: true,
-        excos: []          
+        error: false,
+        filterBy: '',
+        state: '',
+        lga: '',
+        selectedLGAs: [],
+        position: ''          
     }
     componentDidMount() {
         this.fetchExcos()
     }
+
+    fetchExcos = async () => {
+        await axios({
+            url: 'https://ypn-election-02.herokuapp.com/api/excos', 
+            method: 'GET', 
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `${accountStore.user.token}`
+            },
+        })
+        .then(res => {
+            console.log(res.data.data)
+            const { meta } = res.data.data;
+            const payload = Object.keys(res.data.data.meta).map(item => {
+                const ref = {}
+                ref.position = item
+                ref.value = meta[`${item}`]
+                return ref
+            })
+            this.setState({excos: payload})
+        }).then(() => {
+            this.setState({items: this.state.excos, isLoading: false})
+        })
+        .catch(err => {
+            this.setState({error: true, isLoading: false})
+            alert(err.response.data.error)
+        })
+    }
     
     render() {
-        const excosData = this.state.excos.map(exco => {
+        const excosData = this.state.items.map(exco => {
             return (
-                <ExcosItem key={exco.id} item={exco} history={this.props.history}/>
+                <ExcosItem key={exco.value.id} item={exco} history={this.props.history}/>
             )
         })
         if(this.state.isLoading) {
@@ -65,8 +101,8 @@ class Excos extends Component {
                         <TableHeader>
                         <TableRow>
                             <TableHeaderColumn>Name</TableHeaderColumn>
-                            <TableHeaderColumn>Designation</TableHeaderColumn>
-                            <TableHeaderColumn>Email</TableHeaderColumn>
+                            <TableHeaderColumn>Role</TableHeaderColumn>
+                            <TableHeaderColumn>Level</TableHeaderColumn>
                         </TableRow>
                         </TableHeader>
                         <TableBody displayRowCheckbox={false}>
