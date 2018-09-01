@@ -12,7 +12,7 @@ export default class AddPosition extends Component {
 
     state = {
         name: '',
-        level: '',
+        level: 'Federal',
         state: '',
         type: 1,
         local: '',
@@ -91,10 +91,12 @@ export default class AddPosition extends Component {
     }
 
     addPosition = async () => {
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
         const request = {
             name: this.state.name,
             type: this.state.type,
             meta: {
+                level: this.state.level || null,
                 state: this.state.state || null,
                 lga: this.state.local || null,
                 constituency: this.state.selectedConstituency || null,
@@ -111,7 +113,7 @@ export default class AddPosition extends Component {
         method: 'POST', 
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `${accountStore.user.token}`
+            "Authorization": token
         },
         data: request
         })
@@ -150,14 +152,14 @@ export default class AddPosition extends Component {
                                         this.setState({type: 3})
                                     }
                                 })}>
-                                <option value="federal">Federal</option>
-                                <option value="state">State</option>
-                                <option value="senate">Senate</option>
-                                <option value="house of reps">House of Representatives</option>
-                                <option value="local">Local Government</option>
+                                <option value="Federal">Federal</option>
+                                <option value="State">State</option>
+                                <option value="Senate">Senate</option>
+                                <option value="House of Reps">House of Representatives</option>
+                                <option value="Local">Local Government</option>
                             </select> 
                         </div>
-                        {this.state.level === 'state' ?
+                        {this.state.level === 'State' ?
                             <div>
                                <label>State</label><br/>
                                 <select
@@ -179,7 +181,7 @@ export default class AddPosition extends Component {
                         :
                         null
                         }
-                        {this.state.level === 'local' ?
+                        {this.state.level === 'Local' ?
                             <div>
                                 <div>
                                     <label>State</label><br/>
@@ -208,7 +210,7 @@ export default class AddPosition extends Component {
                         :
                         null
                         }
-                        {this.state.level === 'senate' ?
+                        {this.state.level === 'Senate' ?
                             <div>
                                 <div>
                                     <label>State</label><br/>
@@ -239,7 +241,7 @@ export default class AddPosition extends Component {
                         :
                         null
                         }
-                        {this.state.level === 'house of reps' ?
+                        {this.state.level === 'House of Reps' ?
                             <div>
                                 <div>
                                     <label>State</label><br/>

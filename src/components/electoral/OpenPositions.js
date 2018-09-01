@@ -14,7 +14,6 @@ import {
   TableRow
 } from 'material-ui/Table';
 import Nav from '../Nav'
-import ExcosItem from './ExcosItem'
 import { CSVLink } from 'react-csv';
 
 const style = {
@@ -26,17 +25,16 @@ const style = {
     position: 'fixed'
   };
 
-class Excos extends Component {
+class OpenPositions extends Component {
     state = {
-        excos: [],
+        positions: [],
         items: [],
         isLoading: true,
         error: false,
         filterBy: '',
         state: '',
         lga: '',
-        selectedLGAs: [],
-        position: ''          
+        selectedLGAs: [],         
     }
     componentDidMount() {
         this.fetchExcos()
@@ -45,7 +43,7 @@ class Excos extends Component {
     fetchExcos = async () => {
         const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
         await axios({
-            url: 'https://ypn-election-02.herokuapp.com/api/excos', 
+            url: 'https://ypn-election-02.herokuapp.com/api/position', 
             method: 'GET', 
             headers: {
                 "Content-Type": "application/json",
@@ -53,28 +51,14 @@ class Excos extends Component {
             },
         })
         .then(res => {
-            console.log(res.data.data)
-            const { meta } = res.data.data;
-            const payload = Object.keys(res.data.data.meta).map(item => {
-                const ref = {}
-                ref.position = item
-                ref.value = meta[`${item}`]
-                return ref
-            })
-            this.setState({excos: payload})
-        }).then(() => {
-            this.setState({items: this.state.excos, isLoading: false})
-        })
-        .catch(err => {
-            this.setState({error: true, isLoading: false})
-            alert(err.response.data.error)
+            console.log(res.data.data.filter(item => item.name !== 'Excos'))
         })
     }
     
     render() {
-        const excosData = this.state.items.map(exco => {
+        const positonsData = this.state.items.map(exco => {
             return (
-                <ExcosItem key={exco.value.id} item={exco} history={this.props.history}/>
+                <h1 key={exco.value.id} item={exco} history={this.props.history}>Data</h1>
             )
         })
         if(this.state.isLoading) {
@@ -107,7 +91,7 @@ class Excos extends Component {
                         </TableRow>
                         </TableHeader>
                         <TableBody displayRowCheckbox={false}>
-                            {excosData}
+                            {positonsData}
                         </TableBody>
                     </Table>
                     <FloatingActionButton style={style} onClick={() => {
@@ -122,4 +106,4 @@ class Excos extends Component {
 }
 
 
-export default Excos
+export default OpenPositions
