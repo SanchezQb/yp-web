@@ -10,14 +10,19 @@ body {
 	width: 100px;
 }
 
+.check {
+	display: flex;
+	justify-content: center;
+
+}
 .form {
 	display: flex;
 	justify-content: center;
 }
-
 input {
 	margin: 7% auto;
 	width: 200px;
+	height: 25px;
 }
 
 button {
