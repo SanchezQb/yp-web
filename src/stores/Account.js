@@ -28,7 +28,6 @@ class Account {
   }).then(res => {
       this.disabled = false
       history.push('/home')
-      console.log(res.data.data.token)
       this.user.token = res.data.data.token
       localStorage.setItem('authenticated', JSON.stringify({authenticated: true}))
 
