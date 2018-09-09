@@ -131,6 +131,7 @@ export default class AddExco extends Component {
                                 <div>
                                     <h5>Local Government</h5>
                                     <select onChange={(e) => this.setState({local: e.target.value})}>
+                                    <option style={{color: '#000'}}label='Select LGA'>Select LGA</option>
                                         {this.state.selectedLGAs}
                                     </select> 
                                 </div>

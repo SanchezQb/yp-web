@@ -5,6 +5,14 @@ import { CSVLink } from 'react-csv';
 import Nav from '../Nav'
 
 export default class DebateData extends Component {
+
+    state = {
+        data: this.props.location.state
+    }
+
+    componentDidMount() {
+        console.log(this.props)
+    }
     state = {
         isLoading: true,
         data: this.props.location.state,
@@ -72,7 +80,8 @@ export default class DebateData extends Component {
             <div>
                 <Nav />
                 <div className = "wrap">
-                    <h2>{this.state.data.title}</h2>
+                    <h2>{this.state.data.topic}</h2>
+                    <h4>{this.state.data.members.length} Participants</h4>
                     <div>
                         <RaisedButton className="action-buttons" label="Edit Topic" backgroundColor="#64DD17" labelColor="#fff" onClick={this.handleClick}/>
                         <RaisedButton label="Delete Topic" backgroundColor="#F44336" labelColor="#fff" onClick={this.handleClick}/>

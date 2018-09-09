@@ -5,6 +5,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import CircularProgress from 'material-ui/CircularProgress';
 import Nav from '../Nav'
 import DebateItem from './DebateItem'
+import axios from 'axios'
+import accountStore from '../../stores/Account'
 
 const style = {
     margin: 0,
@@ -26,28 +28,29 @@ export default class Debate extends Component {
         this.getDebates()
     }
 
-    // getDebates = async () => {
-    //     await axios({
-    //       url: `https://ypn-node.herokuapp.com/api/v1/convos/type/2`, 
-    //       method: 'GET', 
-    //       headers: {
-    //           "Content-Type": "application/json",
-    //           "Authorization": `${accountStore.user.token}`
-    //       },
-    //   })
-    //   .then(res => {
-    //       this.setState({
-    //           debates: res.data.data.reverse(),
-    //           isLoading: false
-    //       })
-    //   })
-    //   .catch(error => {
-    //       this.setState({
-    //           isLoading: false,
-    //           error: true
-    //       })
-    //   })
-    // }
+    getDebates = async () => {
+        await axios({
+          url: `https://ypn-node.herokuapp.com/api/v1/convos/type/2`, 
+          method: 'GET', 
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `${accountStore.user.token}`
+          },
+      })
+      .then(res => {
+          console.log(res.data.data)
+          this.setState({
+              debates: res.data.data.reverse(),
+              isLoading: false
+          })
+      })
+      .catch(error => {
+          this.setState({
+              isLoading: false,
+              error: true
+          })
+      })
+    }
     render() {
         const topicsData = this.state.debates.map(debate => {
             return (

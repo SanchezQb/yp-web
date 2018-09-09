@@ -6,7 +6,6 @@ class Account {
     token: '',
     avatar: null,
   }
-  @observable authenticated = false
   @observable disabled = false
 
 
@@ -29,11 +28,10 @@ class Account {
   }).then(res => {
       this.disabled = false
       history.push('/home')
+      console.log(res.data.data.token)
       this.user.token = res.data.data.token
-      this.authenticated = true
-      localStorage.setItem('admin', JSON.stringify(this.user))
       localStorage.setItem('authenticated', JSON.stringify({authenticated: true}))
-      history.push('/home')
+
   }).catch(err => {
     if(err.response.status == 403) {
       alert("Incorrect email/password combination")
@@ -45,12 +43,11 @@ class Account {
   })
   }
   logout() {
-    this.authenticated = false
     localStorage.clear()
   }
-  loadData() {
-    this.user =JSON.parse(localStorage.getItem('admin'))
-  }
+  // loadData() {
+  //   this.user =JSON.parse(localStorage.getItem('admin'))
+  // }
 }
 
 
