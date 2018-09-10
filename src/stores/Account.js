@@ -29,7 +29,7 @@ class Account {
       this.disabled = false
       history.push('/home')
       this.user.token = res.data.data.token
-      localStorage.setItem('authenticated', JSON.stringify({authenticated: true}))
+      localStorage.setItem('authenticated', JSON.stringify(res.data.data.token))
 
   }).catch(err => {
     if(err.response.status == 403) {

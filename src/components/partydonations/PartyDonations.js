@@ -2,6 +2,8 @@ import React, { Component }  from 'react';
 import axios from 'axios'
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import {
   Table,
@@ -20,7 +22,8 @@ const style = {
     right: 20,
     bottom: 20,
     left: 'auto',
-    position: 'fixed'
+    position: 'fixed',
+    background: '#F0BA00'
   };
 
 class PartyDonations extends Component {
@@ -46,7 +49,7 @@ class PartyDonations extends Component {
                 <div>
                     <Nav />
                     <div className="loader">
-                        <CircularProgress color="#1e0d61" size={60} thickness={5} />
+                        <CircularProgress color="#82BE30" size={60} thickness={5} />
                     </div>
                 </div>
             )
@@ -58,7 +61,7 @@ class PartyDonations extends Component {
                     <h2>Party Donation History</h2>
                     <div className="top">
                         <CSVLink filename={"party_donations.csv"} data={this.state.donations}>
-                            <RaisedButton className="export-button" label="Export CSV" backgroundColor="#1e0d61" labelColor="#fff" onClick={this.export}/> 
+                            <RaisedButton className="export-button" label="Export CSV" backgroundColor="#F0BA00" labelColor="#fff" onClick={this.export}/> 
                         </CSVLink>
                         <input type="text" placeholder="search" />
                     </div>
@@ -74,6 +77,11 @@ class PartyDonations extends Component {
                             {donationsData}
                         </TableBody>
                     </Table>
+                    <FloatingActionButton style={style} onClick={() => {
+                        this.props.history.push('/party-donations/add')
+                    }}>
+                        <ContentAdd />
+                    </FloatingActionButton>
                 </div>
             </div>
         )

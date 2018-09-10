@@ -62,7 +62,7 @@ export default class AddDebate extends Component {
                         <input type="text" id="title" onChange={(e) => this.setState({topic: e.target.value})}/><br/>
 
                         <label htmlFor="title">Description</label><br/>
-                        <textarea type="text" id="username" name="bio" onChange={(e) => this.setState({description: e.target.value})}/>
+                        <textarea maxLength="280" type="text" id="username" name="bio" onChange={(e) => this.setState({description: e.target.value})}/>
 
                         <label htmlFor="start">Start Date</label><br/>
                         <input type="datetime-local" onChange={(e) => this.setState({startDate: e.target.value})} id="end"/><br />

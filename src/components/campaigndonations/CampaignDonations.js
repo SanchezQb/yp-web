@@ -46,7 +46,7 @@ class CampaignDonations extends Component {
                 <div>
                     <Nav />
                     <div className="loader">
-                        <CircularProgress color="#a92a56" size={60} thickness={5} />
+                        <CircularProgress color="#82BE30" size={60} thickness={5} />
                     </div>
                 </div>
             )

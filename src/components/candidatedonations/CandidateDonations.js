@@ -46,7 +46,7 @@ export default class CandidateDonations extends Component {
                 <div>
                     <Nav />
                     <div className="loader">
-                        <CircularProgress color="#a92a56" size={60} thickness={5} />
+                        <CircularProgress color="#82be30" size={60} thickness={5} />
                     </div>
                 </div>
             )
@@ -77,6 +77,11 @@ export default class CandidateDonations extends Component {
                             {donationsData}
                         </TableBody>
                     </Table>
+                    <FloatingActionButton style={style} onClick={() => {
+                        this.props.history.push('/candidate-donations/add')
+                    }}>
+                        <ContentAdd />
+                    </FloatingActionButton>
                 </div>
             </div>
         )

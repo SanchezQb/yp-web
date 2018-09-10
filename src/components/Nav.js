@@ -80,34 +80,14 @@ class Nav extends Component {
                             nestedItems={[
                                 <ListItem
                                     key={1}
-                                    primaryText="Opinion Polls"
+                                    primaryText="View Polls"
                                     containerElement={<Link to="/opinion-polls" />}
                                     />,
                                 <ListItem
                                     key={2}
-                                    primaryText="Push Polls"
+                                    primaryText="Add Poll"
                                     containerElement={<Link to="/push-polls" />}
-                                />,
-                                <ListItem
-                                    key={3}
-                                    primaryText="Exit Polls"
-                                    containerElement={<Link to="/exit-polls" />}
-                                />,
-                                <ListItem
-                                    key={4}
-                                    primaryText="Tracking Polls"
-                                    containerElement={<Link to="/tracking-polls" />}
-                                />,
-                                <ListItem
-                                    key={4}
-                                    primaryText="Election Polls"
-                                    containerElement={<Link to="/election-polls" />}
-                                />,
-                                <ListItem
-                                    key={4}
-                                    primaryText="Policy Elections"
-                                    containerElement={<Link to="/policy-elections" />}
-                                />,
+                                />
                             ]}
                         />
                     </List>
@@ -201,8 +181,6 @@ class Nav extends Component {
                     <MenuItem containerElement={<Link to="/office" />}>Run for Office Management</MenuItem>
                     <MenuItem containerElement={<Link to="/gallery" />}>Gallery Management</MenuItem>
                     <MenuItem containerElement={<Link to="/debate" />}>Debate Management</MenuItem>
-                    <MenuItem containerElement={<Link to="/donation" />}>Donation Management</MenuItem>
-                    <MenuItem containerElement={<Link to="/membership" />}>Membership Management</MenuItem>
                     </Drawer>
                 </div>
             </div>

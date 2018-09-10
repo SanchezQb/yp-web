@@ -92,6 +92,7 @@ import AddCampaignDonation from './campaigndonations/AddCampaignDonation';
 import CampaignUsersData from './campaigndonations/CampaignUsersData';
 import EditCampaignDonation from './campaigndonations/EditCampaignDonation';
 import CandidateDonations from './candidatedonations/CandidateDonations';
+import AddCandidateDonation from './candidatedonations/AddCandidateDonation';
 import CandidateDonationData from './candidatedonations/CandidateDonationData';
 import CandidateUsersData from './candidatedonations/CandidateUsersData';
 import OpenPositions from './electoral/OpenPositions';
@@ -199,6 +200,7 @@ export default class Main extends Component {
                     <AuthRoute exact path = '/campaign-donations/donated/:id' component = {CampaignUsersData} redirectTo="/" authenticated={this.state.authenticated}/>       
                     <AuthRoute exact path = '/campaign-donations/edit/:id' component = {EditCampaignDonation} redirectTo="/" authenticated={this.state.authenticated}/>
                     <AuthRoute exact path = '/candidate-donations' component = {CandidateDonations} redirectTo="/" authenticated={this.state.authenticated}/>
+                    <AuthRoute exact path = '/candidate-donations/add' component = {AddCandidateDonation} redirectTo="/" authenticated={this.state.authenticated}/>
                     <AuthRoute exact path = '/candidate-donations/:id' component = {CandidateDonationData} redirectTo="/" authenticated={this.state.authenticated}/>
                     <AuthRoute exact path = '/candidate-donations/donated/:id' component = {CandidateUsersData} redirectTo="/" authenticated={this.state.authenticated}/>
                     <AuthRoute exact path = '/open-positions' component = {OpenPositions} redirectTo="/" authenticated={this.state.authenticated}/>

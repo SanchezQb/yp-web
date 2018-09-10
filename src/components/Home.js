@@ -54,14 +54,6 @@ class Home extends React.Component {
                         </Link>
                     </div>
                 <div className="paper-item" style={{backgroundColor: '#fff'}}>
-                    <div style={{backgroundColor: '#444'}}>
-                        <h3>Membership Management</h3>
-                    </div>
-                    <Link to={'/membership'} className="paper-link">
-                        <h5>Change Membership Price</h5>
-                    </Link>
-                </div>
-                <div className="paper-item" style={{backgroundColor: '#fff'}}>
                     <div style={{backgroundColor: '#82BE30'}}>
                         <h3>Donation Management</h3>
                     </div>
@@ -98,41 +90,14 @@ class Home extends React.Component {
                     <div style={{backgroundColor: '#444'}}>
                         <h3>Polls</h3>
                     </div>
-                    <div className="poll-grid">
+                    <div>
                         <Link to={'/opinion-polls'} className="paper-link">
-                            <h5>Opinion Polls </h5>
+                            <h5>View Polls </h5>
                         </Link>
                         <Link to={'/election-polls'} className="paper-link">
-                            <h5>Election Polls</h5>
+                            <h5>Add Poll</h5>
                         </Link>
                     </div>
-                    <div className="poll-grid">
-                        <Link to={'/tracking-polls'} className="paper-link">
-                            <h5>Tracking Polls </h5>
-                        </Link>
-                        <Link to={'/policy-elections'} className="paper-link">
-                            <h5>Policy Elections</h5>
-                        </Link>
-                    </div>
-                    <div className="poll-grid">
-                        <Link to={'/push-polls'} className="paper-link">
-                            <h5>Push Polls </h5>
-                        </Link>
-                        <Link to={'/exit-polls'} className="paper-link">
-                            <h5>Exit Polls</h5>
-                        </Link>
-                    </div>
-                </div>
-                <div className="paper-item" style={{backgroundColor: '#fff'}}>
-                    <div style={{backgroundColor: '#82BE30'}}>
-                        <h3>Questionnaire Management</h3>
-                    </div>
-                    <Link to={'/questionnaire'} className="paper-link">
-                        <h5>View Questionnaire</h5>
-                    </Link>
-                    <Link to={'/questionnaire/add'} className="paper-link">
-                        <h5>Add to Questionnaire</h5>
-                    </Link>
                 </div>
                 <div className="paper-item" style={{backgroundColor: '#fff'}}>
                     <div style={{backgroundColor: '#F0BA00'}}>

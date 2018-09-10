@@ -53,7 +53,6 @@ class Excos extends Component {
             },
         })
         .then(res => {
-            console.log(res.data.data)
             const { meta } = res.data.data;
             const payload = Object.keys(res.data.data.meta).map(item => {
                 const ref = {}
@@ -72,9 +71,9 @@ class Excos extends Component {
     }
     
     render() {
-        const excosData = this.state.items.map(exco => {
+        const excosData = this.state.items.map((exco, i) => {
             return (
-                <ExcosItem key={exco.value.id} item={exco} history={this.props.history}/>
+                <ExcosItem key={i} item={exco} history={this.props.history}/>
             )
         })
         if(this.state.isLoading) {
@@ -82,7 +81,7 @@ class Excos extends Component {
                 <div>
                     <Nav />
                     <div className="loader">
-                        <CircularProgress color="#008000" size={60} thickness={5} />
+                        <CircularProgress color="#82BE30" size={60} thickness={5} />
                     </div>
                 </div>
             )
@@ -94,7 +93,7 @@ class Excos extends Component {
                     <h2>Excos</h2>
                     <div className="top">
                         <CSVLink filename={"excos-data.csv"} data={this.state.excos}>
-                            <RaisedButton className="export-button" label="Export CSV" backgroundColor="#008000" labelColor="#fff" onClick={this.export}/> 
+                            <RaisedButton className="export-button" label="Export CSV" backgroundColor="#F0BA00" labelColor="#fff" onClick={this.export}/> 
                         </CSVLink>
                         <input type="text" placeholder="search" />
                     </div>

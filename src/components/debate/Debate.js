@@ -29,12 +29,13 @@ export default class Debate extends Component {
     }
 
     getDebates = async () => {
+        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
         await axios({
           url: `https://ypn-node.herokuapp.com/api/v1/convos/type/2`, 
           method: 'GET', 
           headers: {
               "Content-Type": "application/json",
-              "Authorization": `${accountStore.user.token}`
+              "Authorization": token
           },
       })
       .then(res => {
@@ -62,7 +63,7 @@ export default class Debate extends Component {
                 <div>
                     <Nav />
                     <div className="loader">
-                        <CircularProgress color="#4055c2" size={60} thickness={5} />
+                        <CircularProgress color="#82BE30" size={60} thickness={5} />
                     </div>
                 </div>
             )

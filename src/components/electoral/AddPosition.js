@@ -30,9 +30,6 @@ export default class AddPosition extends Component {
 
     }
 
-    componentDidMount() {
-        console.log(accountStore.user.token)
-    }
     setLGAs = () => {						
 		let selectedLGAs = [];
 		StateData.map((v) => {
@@ -128,7 +125,6 @@ export default class AddPosition extends Component {
         })
     }
     render() {
-        console.log(this.state)
         return (
             <div>
                 <Nav />

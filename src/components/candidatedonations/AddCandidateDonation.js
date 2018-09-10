@@ -4,17 +4,21 @@ import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
 import { StateData } from '../../StateData'
 import config from '../../config';
+import accountStore from '../../stores/Account';
 
 export default class AddCampaignDonation extends Component {
     state = { 
         target: 0,
         title: '',
-        description: '',
+        name: '',
+        description: "",
         disabled: false,
         level: 'Federal',
         local: '',
         location: 'Federal',
         selectedLGAs: [],
+        start: '',
+        end: ''
      };
 
         setType = () => {
@@ -32,12 +36,15 @@ export default class AddCampaignDonation extends Component {
             }
         }
         handleSubmit = async () => {
-            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
+            console.log(accountStore.user.token)
+            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiWW91dGhQYXJ0eSIsImxhc3RuYW1lIjoiUGFydHkiLCJlbWFpbCI6IlRlY2huaWNhbEBib29rdHUub3JnIiwiZmlyc3RuYW1lIjoiWW91dGgiLCJhdmF0YXIiOm51bGwsIm50X3Rva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKdWIzUnBabWxqWVhScGIyNXpJanBiWFgwLnNVQ0RxazhISkE5bk9vTkVzaVFsZlFtZG5pbF9PSFdLR3d4U2EycWJQdDgiLCJtZXRhIjpudWxsLCJ2aW4iOm51bGwsIm1lbWJlcnNoaXBfbnVtYmVyIjoiT2ZmaWNpYWwifQ.yk1zKxsnZA_A8km3zXrU3xqQL_7ODvt5S3pBtZg4rGc'
             const request = {
                 target: parseInt(this.state.target),
                 title: this.state.title,
                 description: this.state.description,
-                type: 3,
+                type: 2,
+                startDate: this.state.start,
+                endDate: this.state.end,
                 meta: {
                     type: this.setType(),
                     location: this.state.location,
@@ -47,7 +54,7 @@ export default class AddCampaignDonation extends Component {
             if(!this.state.title) return alert('Please specify title')
             if(this.state.target === 0) return alert('Please Specify Target')
             if(!this.state.description) return alert('Please specify description')
-            if(!this.state.location) return alert('Please specify location')
+            if(!this.state.name) return alert('Please specify candidate name')
             this.setState({disabled: true})
             await axios({
               mode:'no-cors',
@@ -68,7 +75,7 @@ export default class AddCampaignDonation extends Component {
           .catch(error => {
               console.log(error.response)
               this.setState({disabled: false})
-              alert('An error occurred while adding debate, please try again')
+              alert('An error occurred while adding donation, please try again')
           })
         }
 
@@ -95,7 +102,7 @@ export default class AddCampaignDonation extends Component {
             <div>
                 <Nav />
                 <div className="wrap">
-                    <h2>Add Project Donation</h2>
+                    <h2>Add Candidate Donation</h2>
                     <form className="edit-form">
                         <label htmlFor="name">Title </label><br/>
                         <input type="text" id="name" name="role" onChange={(e) => this.setState({title: e.target.value})}/><br/>
@@ -105,6 +112,12 @@ export default class AddCampaignDonation extends Component {
 
                         <label htmlFor="username">Description</label><br />
                         <textarea type="text" id="username" name="description" onChange={(e) => this.setState({description: e.target.value})}/>
+
+                        <label htmlFor="name">Candidate Name ( Firstname, Lastname) </label><br/>
+                        <input type="text" id="name" name="role" onChange={(e) => this.setState({name: e.target.value})}/><br/>
+
+                        {/* <label htmlFor="name">Image (Secure URL)</label><br/>
+                        <input type="text" id="image" name="avatar" onChange={this.handleChange}/><br/> */}
 
                          <select 
                             id="level"

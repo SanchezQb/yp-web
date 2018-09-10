@@ -7,52 +7,45 @@ import config from '../../config';
 
 export default class AddPartyDonation extends Component {
     state = { 
+        target: 0,
+        title: '',
+        description: '',
         disabled: false,
-        level: 1,
+        level: 'Federal',
         local: '',
+        location: 'Federal',
         selectedLGAs: [],
      };
-        handleChange = (e) => this.setState({ [e.target.getAttribute('name')]: e.target.value});
 
-        // handleSubmit = () => {
-        //     const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
-        //     // const { token2 } = JSON.parse(localStorage.getItem('admin'))
-        //     if(!token) return alert('Please sign in as an admin to proceed')
-            
-        //     if(!this.state.title || !this.state.location) return alert('Please specify the position of this exco');
-        //     data[`${this.state.role}`] = this.state;
-        //     this.setState({disabled: true})
-        //     axios.request({
-        //         method: 'put',
-        //         url: `${config.electionUrl}/excos`,
-        //         data,
-        //         headers: {
-        //             Authorization: token
-        //         }
-        //     })
-        //     .then(() => {
-        //         this.setState({disabled: false });
-        //         alert(`Successfully added ${this.state.firstname} as the ${this.state.role}`)
-        //         this.props.history.push('/home');
-        //     })
-        //     .catch((err) => {
-        //         this.setState({ disabled: false });
-        //         alert(err.response.data.message || `Something went wrong and we could not complete that action. Try again`);
-        //     })
-        // }
+        setType = () => {
+            if(this.state.level === 'Federal') {
+                return 1
+            }
+            else if(this.state.level === "State") {
+                return 2
+            }
+            else if(this.state.level === "Local") {
+                return 3
+            }
+            else {
+                return 1
+            }
+        }
         handleSubmit = async () => {
             const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
             const request = {
-                target: this.state.target,
+                target: parseInt(this.state.target),
                 title: this.state.title,
                 description: this.state.description,
                 type: 1,
                 meta: {
-                    type: this.state.level,
-                    location: this.state.location
+                    type: this.setType(),
+                    location: this.state.location,
+                    level: this.state.level
                 }
             }
             if(!this.state.title) return alert('Please specify title')
+            if(this.state.target === 0) return alert('Please Specify Target')
             if(!this.state.description) return alert('Please specify description')
             if(!this.state.location) return alert('Please specify location')
             this.setState({disabled: true})
@@ -97,7 +90,6 @@ export default class AddPartyDonation extends Component {
         }
     
     render() {
-        console.log(this.state)
         return (
             <div>
                 <Nav />
@@ -111,14 +103,14 @@ export default class AddPartyDonation extends Component {
                         <input type="number" id="name" name="firstname" onChange={(e) => this.setState({target: e.target.value})}/><br/>
 
                         <label htmlFor="username">Description</label><br />
-                        <textarea type="text" id="username" name="bio" onChange={this.handleChange}/>
+                        <textarea type="text" id="username" name="description" onChange={(e) => this.setState({description: e.target.value})}/>
 
-                        <select 
+                         <select 
                             id="level"
                             onChange={(e) => this.setState({level: e.target.value})}>
-                            <option value={1}>Federal</option>
-                            <option value={2}>State</option>
-                            <option value={3}>Local Government</option>
+                            <option value="Federal">Federal</option>
+                            <option value="State">State</option>
+                            <option value="Local">Local Government</option>
                         </select>
                         {this.state.level === 'State' ?
                             <div>
@@ -126,7 +118,7 @@ export default class AddPartyDonation extends Component {
                                 <select
                                     id="state"
                                     onChange={(e) => {
-                                        this.setState({state: e.target.value, location: e.target.value}, () => {
+                                        this.setState({state: e.target.value, location:`${e.target.value} State`}, () => {
                                             this.setLGAs()
                                         })
                                     }}
@@ -148,7 +140,7 @@ export default class AddPartyDonation extends Component {
                                     <h5>State</h5>
                                     <select
                                         onChange={(e) => {
-                                            this.setState({state: e.target.value, location: e.target.value}, () => {
+                                            this.setState({state: e.target.value}, () => {
                                                 this.setLGAs()
                                             })
                                         }}
@@ -163,7 +155,8 @@ export default class AddPartyDonation extends Component {
                                 </div>
                                 <div>
                                     <h5>Local Government</h5>
-                                    <select onChange={(e) => this.setState({local: e.target.value, location: e.target.value})}>
+                                    <select onChange={(e) => this.setState({local: e.target.value, location: `${e.target.value}, ${this.state.state} State`})}>
+                                    <option style={{color: '#000'}}label='Select LGA'>Select LGA</option>
                                         {this.state.selectedLGAs}
                                     </select> 
                                 </div>
