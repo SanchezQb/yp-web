@@ -16,7 +16,7 @@ export default class AddOpinion extends Component {
                         <input type="text" placeholder="Choice 1" id="choice1" />
                         <input type="text" placeholder="Choice 2" id="choice2" />
                         <input type="text" placeholder="Choice 3" id="choice3" />
-                        <button className="add-choice">Add Choice</button><br/><br/>
+                        <RaisedButton label="Add Choice" backgroundColor="#64DD17" labelColor="#fff" onClick={this.handleClick}/><br /><br />
                         <label htmlFor="start">Start Date</label><br/>
                         <input type="datetime-local" id="start"/><br />
                         <label htmlFor="start">End Date</label><br/>

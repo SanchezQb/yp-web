@@ -248,7 +248,7 @@ export const ConstituencyData = [
         {
           id: 2,
           locals: [
-            "AWKA NORTH, AWKA SOUTH, NJIKOKA, ANAOCHA, IDEMILI NORTH, IDEMILI SOUTH, DUNUKOFIA"
+            "AWKA NORTH", "AWKA SOUTH", "NJIKOKA", "ANAOCHA", "IDEMILI NORTH", "IDEMILI SOUTH", "DUNUKOFIA"
           ]
         },
         {

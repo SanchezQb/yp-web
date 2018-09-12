@@ -59,7 +59,6 @@ export default class AddCalendarEvent extends Component {
         })
     }
     render() {
-        console.log(this.state)
         return (
             <div>
                 <Nav/>
@@ -109,7 +108,7 @@ export default class AddCalendarEvent extends Component {
                         <label>Location</label><br/>
                         <input type="text" onChange={(e) => this.setState({location: e.target.value})} id="end"/><br />
 
-                        <label>Display Picture URL</label><br/>
+                        <label>Display Picture Secure URL(https, not http)</label><br/>
                         <input type="text" onChange={(e) => this.setState({displayPicture: e.target.value})} id="end"/><br />
                         
                         <RaisedButton disabled={this.state.disabled} label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.handleSubmit}/>

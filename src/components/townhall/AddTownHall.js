@@ -1,30 +1,43 @@
 import React, { Component } from 'react'
 import Nav from '../Nav'
 import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
+import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box';
+import FlatButton from 'material-ui/FlatButton';
 import { StateData } from '../../StateData'
 import { ConstituencyData } from '../../ConstituencyData'
+import CircularProgress from 'material-ui/CircularProgress';
 import '../../App.css'
 import axios from 'axios'
-import accountStore from '../../stores/Account'
 import config from '../../config';
 
+
+const styles = {
+    input: {
+       paddingVertical: 4
+    }
+  };
 
 export default class AddTownHall extends Component {
 
     state = {
-        name: '',
         title: '',
         level: 'Federal',
         state: '',
         local: '',
-        location: 'Federal',
-        meta: {},
+        location: ['Federal'],
         stateConstituency: [],
         federalConstituency: [],
         selectedLGAs: [],
         selectedConstituency: [],
-        disabled: false
-
+        disabled: false,
+        open: false,
+        users: [],
+        items: [],
+        focus: null,
+        isLoading: true,
     }
 
     setLGAs = () => {						
@@ -43,8 +56,53 @@ export default class AddTownHall extends Component {
 		});
     }
 
-    addElectoralCandidate = () => {
+    componentDidMount() {
+        this.fetchFocus()
+    }
 
+    fetchFocus = async () => {
+        const authToken = JSON.parse(localStorage.getItem('authenticated'))
+        await axios({
+            url: `${config.baseUrl}/users`, 
+            method: 'GET', 
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": authToken
+            },
+        }).then(res => {
+           this.setState({
+               isLoading: false,
+               users: res.data.data
+           })
+        }).then(() => {
+            this.setState({
+                items: this.state.users
+            })
+        })
+        .catch(err => {
+            this.setState({
+                isLoading: false,
+                error: true
+            })
+        })
+    }
+    filterList = (text) => {
+        let updatedList = this.state.users
+        updatedList = updatedList.filter(v => {
+            return v.firstname.toLowerCase().search(
+                text.toLowerCase()) !== -1;
+        })
+        this.setState({
+            items: updatedList
+        })
+    }
+
+   handleClick = () => {
+        this.setState({open: true})
+    }
+
+    handleClose = () => {
+        this.setState({open: false})
     }
 
     setStateConstituency = () => {
@@ -79,49 +137,86 @@ export default class AddTownHall extends Component {
     }
     handleSelectConstituency = (item) => {
         this.setState({
-            selectedConstituency: item
+            selectedConstituency: item,
+            location: item
         })
         alert(`${item.join(', ')} selected`)
     }
 
-    addPosition = async () => {
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
+    addTownHall = async () => {
+        const authToken = JSON.parse(localStorage.getItem('authenticated'))        
         const request = {
-            title: this.state.title,
+            topic: this.state.title,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
-            members: this.state.members,
+            members: [],
             focus: {
-                name: this.state.name,
-                level: this.state.level,
+                user: this.state.focus,
+            },
+            details: {
+                description: this.state.description,
                 location: this.state.location
             }
         }
+       if(!this.state.title) return alert('Please specify townhall title')
+       if(!this.state.description) return alert('Please provide some description')
+       if(!this.state.focus) return alert('Please select townhall focus')
        this.setState({disabled: true})
-       if(!this.state.title) return alert('Please specify title')
-       if(!this.state.name) return alert('Please specify Town hall focus name')
-       if(!this.state.location) return alert('Please specify Location')
        await axios({
         url: `${config.messagingUrl}?type=3`, 
         method: 'POST', 
         headers: {
             "Content-Type": "application/json",
-            "Authorization": token
+            "Authorization": authToken
         },
         data: request
         })
         .then(res => {
             this.setState({disabled: false})
             alert('Town hall added successfully')
-            this.props.history.pop()
+            this.props.history.push('/home')
         })
         .catch(err => {
             this.setState({disabled: false})
-            console.log(err)
+           alert('An error occured while adding townhall, please try again ')
         })
     }
+
+    handleSelect = (focus) => {
+        this.setState({focus})
+    }
+
+    renderRightIcon = (item) => {
+        if(this.state.focus && this.state.focus.id === item.id) {
+            return <ToggleCheckBox />
+        }
+        else return null
+    }
+   
     render() {
-        console.log(this.state)
+        if(this.state.isLoading) {
+            return (
+                <div>
+                    <Nav />
+                    <div className="loader">
+                        <CircularProgress color="#434d65" size={60} thickness={5} />
+                    </div>
+                </div>
+            )
+        }
+        const actions = [
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onClick={this.handleClose}
+            />,
+            <FlatButton
+              label="Submit"
+              primary={true}
+              keyboardFocused={true}
+              onClick={this.handleClose}
+            />,
+          ];
         return (
             <div>
                 <Nav />
@@ -139,6 +234,8 @@ export default class AddTownHall extends Component {
 
                         <label htmlFor="start">End Date</label><br/>
                         <input type="datetime-local" onChange={(e) => this.setState({endDate: e.target.value})} id="end"/><br />
+                        {this.state.focus ? <h3>{`${this.state.focus.firstname} ${this.state.focus.lastname}`}</h3>: null}
+                        <RaisedButton label="Add Focus" backgroundColor="#64DD17" labelColor="#fff" onClick={this.handleClick}/><br /><br />
                         <div>
                             <label htmlFor="level">Level</label><br/>
                             <select 
@@ -167,7 +264,7 @@ export default class AddTownHall extends Component {
                                 <select
                                     id="state"
                                     onChange={(e) => {
-                                        this.setState({state: e.target.value}, () => {
+                                        this.setState({state: e.target.value, location: [e.target.value]}, () => {
                                             this.setLGAs()
                                         })
                                     }}
@@ -204,7 +301,8 @@ export default class AddTownHall extends Component {
                                 </div>
                                 <div>
                                     <label>Local Government</label><br/>
-                                    <select onChange={(e) => this.setState({local: e.target.value})}>
+                                    <select onChange={(e) => this.setState({local: e.target.value, location: [e.target.value]})}>
+                                        <option style={{color: '#000'}}label='Select LGA'>Select LGA</option>
                                         {this.state.selectedLGAs}
                                     </select> 
                                 </div>
@@ -276,10 +374,37 @@ export default class AddTownHall extends Component {
                         null
                         }
             
-                        <RaisedButton disabled={this.state.disabled} label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.addPosition}/>
+                        <RaisedButton disabled={this.state.disabled} label="Save" backgroundColor="#64DD17" labelColor="#fff" onClick={this.addTownHall}/>
+                        <Dialog
+                            title="Add Focus"
+                            actions={actions}
+                            modal={false}
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                            autoScrollBodyContent={true}
+                            >
+                            <div style={styles.block}>
+                                <input type="text" placeholder='Search by firstname' style={styles.input} onChange={(e) => this.filterList(e.target.value)} id="end"/><br />
+                                <List>
+                                {this.state.items.map(item => {
+                                    return (
+                                        <ListItem
+                                            key={item.id}
+                                            style={styles.listItem}
+                                            onClick={() => this.handleSelect(item)}
+                                            primaryText={`${item.firstname} ${item.lastname}`}
+                                            rightIcon={this.renderRightIcon(item)}
+                                            leftAvatar={item.avatar ? <Avatar src={item.avatar}/>: <Avatar>{item.firstname.split("")[0]}</Avatar>}
+                                        />
+                                    )
+                                })}
+                                </List>
+                            </div>
+                        </Dialog>
                     </form>
                 </div>
             </div>
         )
     }
 }
+

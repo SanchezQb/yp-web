@@ -36,8 +36,7 @@ export default class AddCampaignDonation extends Component {
             }
         }
         handleSubmit = async () => {
-            console.log(accountStore.user.token)
-            const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiWW91dGhQYXJ0eSIsImxhc3RuYW1lIjoiUGFydHkiLCJlbWFpbCI6IlRlY2huaWNhbEBib29rdHUub3JnIiwiZmlyc3RuYW1lIjoiWW91dGgiLCJhdmF0YXIiOm51bGwsIm50X3Rva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKdWIzUnBabWxqWVhScGIyNXpJanBiWFgwLnNVQ0RxazhISkE5bk9vTkVzaVFsZlFtZG5pbF9PSFdLR3d4U2EycWJQdDgiLCJtZXRhIjpudWxsLCJ2aW4iOm51bGwsIm1lbWJlcnNoaXBfbnVtYmVyIjoiT2ZmaWNpYWwifQ.yk1zKxsnZA_A8km3zXrU3xqQL_7ODvt5S3pBtZg4rGc'
+            const authToken = JSON.parse(localStorage.getItem('authenticated'))
             const request = {
                 target: parseInt(this.state.target),
                 title: this.state.title,
@@ -63,7 +62,7 @@ export default class AddCampaignDonation extends Component {
               data: request,
               headers: {
                   "Content-Type": "application/json",
-                  "Authorization": token,
+                  "Authorization": authToken,
                   'Access-Control-Allow-Origin': '*'
               },
           })

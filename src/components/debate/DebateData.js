@@ -90,7 +90,7 @@ export default class DebateData extends Component {
                     <CSVLink filename={"debate-messages.csv"} data={this.state.messages}>
                         <RaisedButton className="export-button" label="Export CSV" onClick={this.export}/> 
                     </CSVLink>
-                    <div className="chat">
+                    {/* <div className="chat">
                         <ChatFeed
                             maxHeight={300}
                             messages={this.state.messages} // Boolean: list of message objects
@@ -110,7 +110,7 @@ export default class DebateData extends Component {
                                 }
                             }
                             />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

@@ -16,15 +16,15 @@ export default class AddDebate extends Component {
 
 
     handleSubmit = async () => {
-        const token = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTgsInJvbGUiOjUsInVzZXJuYW1lIjoiYm9va3R1c29sdXRpb25zIiwibGFzdG5hbWUiOm51bGwsImVtYWlsIjoidGVjaG5pY2FsQGJvb2t0dS5vcmciLCJmaXJzdG5hbWUiOiJCb29rdHUgU29sdXRpb25zIiwiYXZhdGFyIjpudWxsLCJudF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnViM1JwWm1sallYUnBiMjV6SWpwYlhYMC5zVUNEcWs4SEpBOW5Pb05Fc2lRbGZRbWRuaWxfT0hXS0d3eFNhMnFiUHQ4IiwibWV0YSI6bnVsbCwidmluIjpudWxsLCJtZW1iZXJzaGlwX251bWJlciI6bnVsbH0.xPMheOdUtHeHUHRbc_zJW9q1Vvq0lJwz0WRvBSPF0Co'
+        const authToken = JSON.parse(localStorage.getItem('authenticated'))
         const request = {
             details: {
-                title: this.state.topic,
                 description: this.state.description
             },
             startDate: this.state.startDate,
             endDate: this.state.endDate,
             topic: this.state.topic,
+            members: []
             
         }
         this.setState({disabled: true})
@@ -35,7 +35,7 @@ export default class AddDebate extends Component {
           data: request,
           headers: {
               "Content-Type": "application/json",
-              "Authorization": token,
+              "Authorization": authToken,
               'Access-Control-Allow-Origin': '*'
           },
       })
@@ -51,7 +51,6 @@ export default class AddDebate extends Component {
       })
     }
     render() {
-        console.log(this.state)
         return (
             <div>
                 <Nav />

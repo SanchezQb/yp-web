@@ -18,7 +18,7 @@ export default class DebateItem extends Component {
                 <ListItem
                     onClick={() => this.handleClick()}
                     primaryText={`Topic: ${this.state.item.topic}`}
-                    secondaryText={`Description: ${this.state.item.description}`}
+                    secondaryText={`Description: ${this.state.item.details.description}`}
                 />
                 <Divider /> 
             </div> 
