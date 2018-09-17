@@ -97,7 +97,7 @@ import CandidateDonationData from './candidatedonations/CandidateDonationData';
 import CandidateUsersData from './candidatedonations/CandidateUsersData';
 import OpenPositions from './electoral/OpenPositions';
 import Failure from './forgot/failure'
-import Form from './forgot/form'
+import ForgotPassword from './forgot/form'
 import Success from './forgot/success'
 
 
@@ -204,7 +204,7 @@ export default class Main extends Component {
                     <AuthRoute exact path = '/candidate-donations/:id' component = {CandidateDonationData} redirectTo="/" authenticated={this.state.authenticated}/>
                     <AuthRoute exact path = '/candidate-donations/donated/:id' component = {CandidateUsersData} redirectTo="/" authenticated={this.state.authenticated}/>
                     <AuthRoute exact path = '/open-positions' component = {OpenPositions} redirectTo="/" authenticated={this.state.authenticated}/>
-                    <Route exact path = '/reset-password' component = {Form}/>
+                    <Route exact path = '/reset/password' component = {ForgotPassword}/>
                     <Route exact path = '/reset-password/success' component = {Success}/>
                     <Route exact path = '/reset-password/error' component = {Failure}/>
                 </Switch>
