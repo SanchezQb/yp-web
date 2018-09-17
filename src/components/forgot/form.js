@@ -10,12 +10,10 @@ export default class ForgotPasswordPage extends Component {
 	}
 
 	componentDidMount = () => {
-	
 	 const { tk } = qs.parse(this.props.location.search)
-	 console.log(tk);
 	 axios({
 		 method: 'get',
-		 url: `http://localhost:3000/reset/password/?tk=${tk}`,
+		 url: `https://ypn-base-01.herokuapp.com/reset/password/?tk=${tk}`,
 	 })
 	 .then((response) => this.setState({ processing: false, success: true, token: response.data.data.token }))
 	 .catch((err) => this.setState({ processing: false, success: false }))
@@ -30,14 +28,14 @@ export default class ForgotPasswordPage extends Component {
 		if(this.state.password !== this.state.password2) return alert('Seems like those passwords dont match');
 		axios({
 			method: 'put',
-			url: `http://localhost:3000/user`,
+			url: `https://ypn-base-01.herokuapp.com/user`,
 			data: {
 				user: {
 					password: this.state.password
 				}
 			},
 			headers: {
-				Authorization: this.state.token
+				Authorization: token
 			}
 		})
 		.then(() => {
@@ -45,10 +43,10 @@ export default class ForgotPasswordPage extends Component {
 			window.open('https://youthpartyng.com/', '_self')
 		})
 		.catch((err) => {
-			console.log(err);
 			alert('Something went wrong and we could not reset your password, Please try again')
 		})
 	}
+
 	render() {
 		if(this.state.processing) return (
 			<div style={{ height: '100vh', width: '100%', flexDirection: 'column', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> 

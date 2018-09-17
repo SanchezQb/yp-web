@@ -13,7 +13,7 @@ export default class Success extends Component {
 						<path d="M2 20 L12 28 30 4" />
 					</svg>
 				</div>
-				<h3 align="center">Your password has successfully been reset</h3>
+				<h3 align="center"> { this.props.message || 'Your password has successfully been reset'}</h3>
 			</div>	
 		)
 	}
