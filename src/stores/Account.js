@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import axios from 'axios'
+import config from '../config/'
 
 class Account {
   @observable user = {
@@ -20,7 +21,7 @@ class Account {
     }
     this.disabled = true
     axios({
-      url: 'https://ypn-base-01.herokuapp.com/login', 
+      url: `${config.baseUrl}/login`, 
       method: 'POST', 
       data: request,
   

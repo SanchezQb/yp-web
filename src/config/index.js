@@ -1,6 +1,6 @@
 export default {
-    baseUrl: 'https://ypn-base-01.herokuapp.com',
-    electionUrl: 'https://ypn-election-02.herokuapp.com/api',
-    messagingUrl: 'https://ypn-node.herokuapp.com/api/v1/convos',
-    nodeService: 'https://ypn-node.herokuapp.com/api/v1'
+    baseUrl: 'http://52.47.48.167/rails',
+    electionUrl: 'http://52.47.48.167/elections/api',
+    messagingUrl: 'http://52.47.48.167/notifications',
+    nodeService: 'http://52.47.48.167/api/v1'
 }
